@@ -1,0 +1,69 @@
+// This file contains Minecraft bot commands and the code needed to accomplish them using the Mineflayer JavaScript library.
+
+// Go forward
+bot.setControlState('forward',true)
+
+//jump
+bot.setControlState('jump',true)
+
+//jumping one time
+bot.setControlState('jump',true)
+bot.setControlState('jump',false)
+
+//Go forward one time
+bot.setControlState('forward',true)
+bot.setControlState('forward',false)
+
+//Go backward
+bot.setControlState('back',true)
+
+//Go backward one time
+bot.setControlState('back',true)
+bot.setControlState('back’false)
+
+//Define block position in x, y, z.
+bot.pathfinder.setGoal(new GoalNear(x, y, z))
+
+//stop
+bot.pathfinder.stop()
+
+//stop moving
+bot.clearControlStates()
+
+//donne ta position en X Y Z
+bot.entity.position.x
+bot.entity.position.y
+bot.entity.position.z
+
+//donne ta position en X Y Z 
+bot.chat("Je suis en X=" + bot.entity.position.x + " Y=" + bot.entity.position.y + " Z=" + bot.entity.position.z)
+
+//viens vers username
+const target = bot.players[username]?.entity
+const { x: playerX, y: playerY, z: playerZ } = target.position
+bot.pathfinder.setGoal(new GoalNear(playerX, playerY, playerZ, 1))
+
+//find a block of (name)
+  const name = "(name)";
+  const ids = [mcData.blocksByName[name].id];
+  const blocks = bot.findBlocks({ matching: ids, maxDistance: 128, count: 10 })
+  bot.chat(`I found ${blocks.length} ${name} blocks`)
+
+//find a block of diamond
+const name = "diamond";
+const ids = [mcData.blocksByName[name].id];
+const blocks = bot.findBlocks({ matching: ids, maxDistance: 128, count: 10 })
+bot.chat(`I found ${blocks.length} ${name} blocks`)
+
+//Dig block name
+findBlock("name");
+digBlock("name");
+
+//Dig block stone 
+digBlock("stone");
+
+//Attaque username
+const target = bot.players[username]?.entity;
+const { x: playerX, y: playerY, z: playerZ } = target.position;
+bot.pathfinder.setGoal(new GoalNear(playerX, playerY, playerZ, 1));
+bot.attack(target);
